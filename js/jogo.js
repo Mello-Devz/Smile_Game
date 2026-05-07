@@ -51,12 +51,30 @@ function atualizaPlacar(acertos, tentativas) {
 function acertou(obj) {
   //altera a classe CSS da <div> escolhida pelo jogador (className)
   obj.className = "acertou";
+  //limpa o conteúdo antigo antes de adicionar a imagem
+  obj.innerHTML = "";
   //Criar uma constante img que armazena um novo objeto imagem com largura de 100px
   const img = new Image(100);
   img.id = "imagem";
   //altera o atributo src (source) da imagem criada
   img.src =
     "https://upload.wikimedia.org/wikipedia/commons/2/2e/Oxygen480-emotes-face-smile-big.svg";
+  //adiciona a imagem criada na div (obj) escolhida pelo jogador (appendChild)
+  obj.appendChild(img);
+}
+
+//funçao executada quando o jogador errou
+function errou(obj) {
+  //altera a classe CSS da <div> escolhida pelo jogador (className)
+  obj.className = "errou";
+  //limpa o conteúdo antigo antes de adicionar a imagem
+  obj.innerHTML = "";
+  //Criar uma constante img que armazena um novo objeto imagem com largura de 100px
+  const img = new Image(100);
+  img.id = "imagem-erro";
+  //altera o atributo src (source) da imagem criada para uma cara triste
+  img.src =
+    "https://ufsb.edu.br/residenciapedagogica/imagens/1-galeria-de-imagens-01/detail/3-imagem-3-titulo-com-ate-45-caracteres?tmpl=component&phocadownload=1";
   //adiciona a imagem criada na div (obj) escolhida pelo jogador (appendChild)
   obj.appendChild(img);
 }
@@ -86,8 +104,8 @@ function verifica(obj) {
       acertos++;
     } else {
       //se errou a tentativa
-      //altera a classe da <div> escolhida pelo jogador para a classe errou
-      obj.className = "errou";
+      //chama a função errou para mostrar a imagem de erro na div escolhida
+      errou(obj);
       //armazena a div aonde Smile está escondido (getElementById)
       const objSorteado = document.getElementById(sorteado);
       //chama a funçao acertou para mostrar a div aonde está o Smile
